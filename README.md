@@ -7,3 +7,9 @@ Twilio Interface for Deno
 ```bash
 $deno run --allow-all ./src/main.ts
 ```
+
+## deploy
+
+```bash
+flyctl deploy
+```
