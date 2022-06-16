@@ -33,12 +33,12 @@
 
 ```
 POST https://api.smartsheet.com/2.0/webhooks
-Authorization: Bearer wX35B9BE2oGUKQt28YDOsy7FGC9AcWXdb5SuM
+Authorization: Bearer 
 Content-Type: application/json
 
 {
   "name": "Send SMS",
-  "callbackUrl": "https://sungyong-twilio-sms-callback-4698-dev.twil.io/webhook",
+  "callbackUrl": "https://dev.twil.io/webhook",
   "scope": "sheet",
   "scopeObjectId": "6158310178088836",
   "events": [
@@ -57,7 +57,7 @@ Content-Type: application/json
   "message": "SUCCESS",
   "resultCode": 0,
   "result": {
-    "id": 5836227082512260,
+    "id": ,
     "name": "Send SMS",
     "scope": "sheet",
     "scopeObjectId": 6158310178088836,
@@ -67,8 +67,8 @@ Content-Type: application/json
     "events": [
       "*.*"
     ],
-    "callbackUrl": "https://sungyong-twilio-sms-callback-4698-dev.twil.io/webhook",
-    "sharedSecret": "6kxa0o9m2yan3uy7dly4o7dsn4",
+    "callbackUrl": "https://dev.twil.io/webhook",
+    "sharedSecret": "",
     "enabled": false,
     "status": "NEW_NOT_VERIFIED",
     "version": 1,
@@ -81,8 +81,8 @@ Content-Type: application/json
 ## Enable webhook
 
 ```
-PUT https://api.smartsheet.com/2.0/webhooks/5836227082512260
-Authorization: Bearer wX35B9BE2oGUKQt28YDOsy7FGC9AcWXdb5SuM
+PUT https://api.smartsheet.com/2.0/webhooks/
+Authorization: Bearer 
 Content-Type: application/json
 
 {
@@ -105,7 +105,7 @@ Content-Type: application/json
     "events": [
       "*.*"
     ],
-    "callbackUrl": "https://sungyong-twilio-sms-callback-4698-dev.twil.io/webhook",
+    "callbackUrl": "https://dev.twil.io/webhook",
     "sharedSecret": "6kxa0o9m2yan3uy7dly4o7dsn4",
     "enabled": false,
     "status": "DISABLED_VERIFICATION_FAILED",
@@ -139,4 +139,32 @@ Smartsheet-Hook-Response: d78dd1d3-01ce-4481-81de-92b4f3aa5ab1
 ```
 challenge=104ef667-3eba-40c8-8a6e-1ed58f3c90f3&webhookId=5836227082512260
 
+```
+
+## Enable webhook
+
+```json
+{
+  "message": "SUCCESS",
+  "resultCode": 0,
+  "result": {
+    "id": 1234,
+    "name": "Send SMS",
+    "scope": "sheet",
+    "scopeObjectId": 6158310178088836,
+    "subscope": {
+      "columnIds": []
+    },
+    "events": [
+      "*.*"
+    ],
+    "callbackUrl": "https://dev.twil.io/webhook",
+    "sharedSecret": "6kxa0o9m2yan3uy7dly4o7dsn4",
+    "enabled": true,
+    "status": "ENABLED",
+    "version": 1,
+    "createdAt": "2022-06-16T09:26:44Z",
+    "modifiedAt": "2022-06-16T13:17:54Z"
+  }
+}
 ```

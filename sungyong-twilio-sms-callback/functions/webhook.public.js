@@ -42,7 +42,33 @@ exports.handler = async (context, event, callback) => {
     // and the rest operator
     const { request, ...smartsheetEvents } = event;
 
-    console.log({smartsheetEvents});
+    console.info({smartsheetEvents}, JSON.stringify(smartsheetEvents));
+
+    const { challenge, events } = smartsheetEvents;
+
+    const response = new Twilio.Response();
+    response
+    // Set the status code to 301 Redirect
+    .setStatusCode(200)
+    .appendHeader('Content-Type', 'application/json');
+
+    if (challenge) {
+      response
+      .appendHeader('Smartsheet-Hook-Response', smartsheetEvents.challenge)
+      .setBody({
+        smartsheetHookResponse:  smartsheetEvents.challenge,
+      });
+  
+      return callback(null, response);
+    }
+
+    if (events) {
+      events.forEach(event => {
+        console.info({event}, JSON.stringify(event));
+      });
+    }
+
+    return callback(null, response);
 
   // if header has Smartsheet-Hook-Challenge
 
@@ -72,18 +98,4 @@ exports.handler = async (context, event, callback) => {
   //     body: `Email to ${recipientEmail} was opened on ${formattedDateTime}.`,
   //   });
   // };
-
-
-  const response = new Twilio.Response();
-
-  response
-    // Set the status code to 301 Redirect
-    .setStatusCode(200)
-    .appendHeader('Content-Type', 'application/json')
-    .appendHeader('Smartsheet-Hook-Response', smartsheetEvents.challenge)
-    .setBody({
-      smartsheetHookResponse:  smartsheetEvents.challenge,
-    });
-
-  return callback(null, response);
 };
