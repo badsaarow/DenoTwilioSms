@@ -24,7 +24,7 @@
 	// "loadLocalEnv": false 	/* Includes the local environment variables */,
 	// "loadSystemEnv": false 	/* Uses system environment variables as fallback for variables specified in your .env file. Needs to be used with --env explicitly specified. */,
 	// "logCacheSize": null 	/* Tailing the log endpoint will cache previously seen entries to avoid duplicates. The cache is topped at a maximum of 1000 by default. This option can change that. */,
-	// "logLevel": "info" 	/* Level of logging messages. */,
+	"logLevel": "debug",
 	// "logs": true 	/* Toggles request logging */,
 	// "ngrok": null 	/* Uses ngrok to create a public url. Pass a string to set the subdomain (requires a paid-for ngrok account). */,
 	// "outputFormat": "" 	/* Output the results in a different format */,
@@ -33,7 +33,7 @@
 	// "production": false 	/* Promote build to the production environment (no domain suffix). Overrides environment flag */,
 	// "properties": null 	/* Specify the output properties you want to see. Works best on single types */,
 	// "region": null 	/* Twilio API Region */,
-	"runtime": "node14" 	/* The version of Node.js to deploy the build to. (node14) */,
+	"runtime": "node14" 	/* The version of Node.js to deploy the build to. (node14) */
 	// "serviceName": null 	/* Overrides the name of the Serverless project. Default: the name field in your package.json */,
 	// "serviceSid": null 	/* SID of the Twilio Serverless Service to deploy to */,
 	// "sourceEnvironment": null 	/* SID or suffix of an existing environment you want to deploy from. */,

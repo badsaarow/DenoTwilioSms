@@ -1,0 +1,41 @@
+# Create webhook
+# scopeObjectId: sheet ID
+# columnIds: send SMS checkbox
+POST https://api.smartsheet.com/2.0/webhooks
+Authorization: Bearer
+Content-Type: application/json
+
+{
+  "name": "Send SMS",
+  "callbackUrl": "https://dev.twil.io/webhook",
+  "scope": "sheet",
+  "scopeObjectId": "",
+  "events": [
+    "*.*"
+  ],
+  "version": 1,
+  "subscope": {
+    "columnIds": [
+    ]
+  }
+}
+
+###
+
+# List webhooks
+GET https://api.smartsheet.com/2.0/webhooks
+Authorization: Bearer
+
+###
+
+# Enable webhook
+PUT https://api.smartsheet.com/2.0/webhooks/{webhookId}
+Authorization: Bearer
+Content-Type: application/json
+
+{
+  "enabled": true
+}
+
+###
+

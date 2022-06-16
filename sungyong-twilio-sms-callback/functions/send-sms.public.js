@@ -3,8 +3,8 @@ exports.handler = function (context, event, callback) {
   const twilioClient = context.getTwilioClient();
 
   // Query parameters or values sent in a POST body can be accessed from `event`
-  const from = event.From || '+14422819605';
-  const to = event.To || '+821026027395';
+  const from = event.From || '+1231423';
+  const to = event.To || '+123421343';
   const body = event.Body || 'Hello World!';
 
   // Use `messages.create` to generate a message. Be sure to chain with `then`
