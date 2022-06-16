@@ -30,6 +30,20 @@ const verifyWebhook = () => {
 exports.handler = async (context, event, callback) => {
   console.debug({context, event, callback});
 
+    // Access a pre-initialized Twilio client from context
+    const twilioClient = context.getTwilioClient();
+
+    const twilioPhoneNumber = context.TWILIO_PHONE_NUMBER;
+    const numberToNotify = context.NOTIFY_PHONE_NUMBER;
+  
+    
+    // Runtime injects the request object and spreads in the SendGrid events.
+    // Isolate the original SendGrid event contents using destructuring
+    // and the rest operator
+    const { request, ...smartsheetEvents } = event;
+
+    console.log({smartsheetEvents});
+
   // if header has Smartsheet-Hook-Challenge
 
   // Verify the request using the public key, the body of the request,
@@ -59,26 +73,17 @@ exports.handler = async (context, event, callback) => {
   //   });
   // };
 
-  // // Access a pre-initialized Twilio client from context
-  // const twilioClient = context.getTwilioClient();
 
-  // const twilioPhoneNumber = context.TWILIO_PHONE_NUMBER;
-  // const numberToNotify = context.NOTIFY_PHONE_NUMBER;
+  const response = new Twilio.Response();
 
-  
-  // // Runtime injects the request object and spreads in the SendGrid events.
-  // // Isolate the original SendGrid event contents using destructuring
-  // // and the rest operator
-  // const { request, ...sendGridEvents } = event;
-  // // Convert the SendGrid event back into an array of events, which is the
-  // // format sent by SendGrid initially
-  // const sendGridPayload = Object.values(sendGridEvents);
+  response
+    // Set the status code to 301 Redirect
+    .setStatusCode(200)
+    .appendHeader('Content-Type', 'application/json')
+    .appendHeader('Smartsheet-Hook-Response', smartsheetEvents.challenge)
+    .setBody({
+      smartsheetHookResponse:  smartsheetEvents.challenge,
+    });
 
-  // // Stringify the event and add newlines/carriage returns since they're expected by validator
-  // const rawEvent =
-  //   JSON.stringify(sendGridPayload).split('},{').join('},\r\n{') + '\r\n';
-
-
-  // Return a 200 OK!
-  return callback();
+  return callback(null, response);
 };

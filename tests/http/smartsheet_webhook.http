@@ -39,3 +39,14 @@ Content-Type: application/json
 
 ###
 
+# simulate webhook
+POST http://localhost:3000/webhook
+Content-Type: application/json
+Smartsheet-Hook-Challenge: d78dd1d3-01ce-4481-81de-92b4f3aa5ab1
+
+{ 
+  "challenge": "d78dd1d3-01ce-4481-81de-92b4f3aa5ab1",
+  "webhookId": 5836227082512260
+}
+
+###
